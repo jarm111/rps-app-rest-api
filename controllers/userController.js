@@ -8,7 +8,7 @@ exports.createUser = (req, res) => {
   });
 };
 
-exports.readUser = (req, res) => {
+exports.readUserByName = (req, res) => {
   User.findOne({ name: req.params.name }, (err, user) => {
     if (err) res.send(err);
     res.json(user);
