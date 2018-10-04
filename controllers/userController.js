@@ -14,3 +14,16 @@ exports.readUserByName = (req, res) => {
     res.json(user);
   });
 };
+
+exports.updateUserBestScoreByName = (req, res) => {
+  const newBestScore = req.body.bestScore;
+  User.findOneAndUpdate(
+    { name: req.params.name },
+    { bestScore: newBestScore },
+    { new: true },
+    (err, user) => {
+      if (err) res.send(err);
+      res.json(user);
+    }
+  );
+};
