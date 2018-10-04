@@ -8,4 +8,4 @@ const userSchema = new mongoose.Schema({
   bestScore: { type: Number, min: 0, default: 0 }
 });
 
-module.exports = mongoose.model('Users', userSchema);
+module.exports = mongoose.model('User', userSchema);

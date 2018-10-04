@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const Users = mongoose.model('Users');
+const User = mongoose.model('User');
 
 exports.addUser = (req, res) => {
-  new Users(req.body).save((err, user) => {
+  new User(req.body).save((err, user) => {
     if (err) res.send(err);
     res.json(user);
   });
