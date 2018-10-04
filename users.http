@@ -1,5 +1,10 @@
-### Create a new task
+@name = matti
+
+### Create a new user
 POST http://localhost:3000/users/
 Content-Type: application/x-www-form-urlencoded
 
 name=matti
+
+### Get a user by name
+GET http://localhost:3000/users/{{name}}
