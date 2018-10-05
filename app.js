@@ -5,8 +5,9 @@ const mongoose = require('mongoose');
 const User = require('./models/userModel');
 const bodyParser = require('body-parser');
 const routes = require('./routes/userRoutes');
+const cors = require('cors');
 
-// app.get('/', (req, res) => res.send('Hello World!'));
+app.use(cors());
 
 mongoose.connect(
   'mongodb://localhost/RpsUsersdb',
