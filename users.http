@@ -1,16 +1,16 @@
-@name = matti
+@name = testUser
 
 ### Create a new user
-POST http://localhost:3000/users/
+POST http://localhost:5000/users/
 Content-Type: application/x-www-form-urlencoded
 
-name=matti
+name={{name}}
 
 ### Get a user by name
-GET http://localhost:3000/users/{{name}}
+GET http://localhost:5000/users/{{name}}
 
 ### Update user's best score
-PUT http://localhost:3000/users/{{name}}
+PUT http://localhost:5000/users/{{name}}
 Content-Type: application/x-www-form-urlencoded
 
-bestScore=4
+bestScore=1
