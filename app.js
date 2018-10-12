@@ -11,7 +11,7 @@ const cors = require('cors');
 app.use(cors());
 
 mongoose.connect(
-  'mongodb://localhost/RpsUsersdb',
+  process.env.DB_CONNECTION,
   { useNewUrlParser: true }
 );
 mongoose.connection.on(
