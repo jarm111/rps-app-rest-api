@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-  name: {
+  googleId: {
     type: String,
-    required: 'User name required'
+    required: "User's Google ID required"
   },
   bestScore: { type: Number, min: 0, default: 0 }
 });
