@@ -11,6 +11,7 @@ require('./models/userModel');
 const routes = require('./routes/userRoutes');
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(cors());
 app.use(passport.initialize());
 
@@ -31,13 +32,10 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET
     },
     (accessToken, refreshToken, profile, done) => {
-      console.log(accessToken);
-      console.log(refreshToken);
-      console.log(profile);
-      console.log(done);
-      ((err, user) => {
+      const User = mongoose.model('User');
+      User.findOneOrCreate({ googleId: profile.id }, (err, user) => {
         return done(err, user);
-      })();
+      });
     }
   )
 );
