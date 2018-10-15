@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const jwt = require('jsonwebtoken');
 
 exports.createUser = (req, res) => {
   new User(req.body).save((err, user) => {
@@ -26,4 +27,15 @@ exports.updateUserBestScoreByName = (req, res) => {
       res.json(user);
     }
   );
+};
+
+exports.getTokenAndScore = (req, res) => {
+  const token = jwt.sign(
+    {
+      googleId: req.user.googleId
+    },
+    process.env.SECRET,
+    { expiresIn: '1d', issuer: 'RPS-App' }
+  );
+  res.json({ token, bestScore: req.user.bestScore });
 };
