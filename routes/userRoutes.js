@@ -11,6 +11,6 @@ module.exports = app => {
     .route('/auth/google/')
     .get(
       passport.authenticate('google-token', { session: false }),
-      (req, res) => res.send(req.user)
+      user.getTokenAndBestScore
     );
 };
