@@ -13,4 +13,5 @@ module.exports = app => {
       passport.authenticate('google-token', { session: false }),
       user.getTokenAndBestScore
     );
+  app.route('/user/').put(user.authenticateUser, user.updateUserBestScore);
 };
