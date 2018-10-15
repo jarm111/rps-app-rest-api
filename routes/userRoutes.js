@@ -2,16 +2,13 @@ const passport = require('passport');
 const user = require('../controllers/userController');
 
 module.exports = app => {
-  app.route('/users/').post(user.createUser);
   app
-    .route('/users/:name')
-    .get(user.readUserByName)
-    .put(user.updateUserBestScoreByName);
-  app
-    .route('/auth/google/')
+    .route('/user/auth/google/')
     .get(
       passport.authenticate('google-token', { session: false }),
       user.getTokenAndBestScore
     );
-  app.route('/user/').put(user.authenticateUser, user.updateUserBestScore);
+  app
+    .route('/user/score/')
+    .put(user.authenticateUser, user.updateUserBestScore);
 };
