@@ -1,16 +1,15 @@
-@name = testUser
+@googleToken = xxxx
+@accessToken = xxxx
 
-### Create a new user
-POST http://localhost:5000/users/
-Content-Type: application/x-www-form-urlencoded
+### Authenticate user with token in headers
+GET http://localhost:5000/user/auth/google/
+access_token: {{googleToken}}
 
-name={{name}}
+### Update user best score with token in Authorization header
+PUT http://localhost:5000/user/score/
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
 
-### Get a user by name
-GET http://localhost:5000/users/{{name}}
-
-### Update user's best score
-PUT http://localhost:5000/users/{{name}}
-Content-Type: application/x-www-form-urlencoded
-
-bestScore=1
+{
+  "bestScore": 4
+}
