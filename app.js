@@ -10,7 +10,6 @@ const port = process.env.PORT || '5000';
 require('./models/userModel');
 const routes = require('./routes/userRoutes');
 
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 app.use(passport.initialize());
