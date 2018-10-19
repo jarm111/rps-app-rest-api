@@ -8,7 +8,7 @@ exports.getTokenAndBestScore = (req, res) => {
       googleId: req.user.googleId
     },
     process.env.SECRET,
-    { expiresIn: '1d', issuer: 'RPS-App' }
+    { expiresIn: '1d', issuer: process.env.ISSUER }
   );
   res.json({ token, bestScore: req.user.bestScore });
 };
@@ -26,7 +26,7 @@ exports.authenticateUser = (req, res, next) => {
   jwt.verify(
     token,
     process.env.SECRET,
-    { issuer: 'RPS-App' },
+    { issuer: process.env.ISSUER },
     (err, decoded) => {
       if (err) return res.send(err);
       res.locals.googleId = decoded.googleId;
