@@ -7,22 +7,13 @@ const cors = require('cors');
 const passport = require('passport');
 const GoogleTokenStrategy = require('passport-google-token').Strategy;
 const port = process.env.PORT || '5000';
+require('./config/dbConnection')();
 require('./models/userModel');
 const routes = require('./routes/userRoutes');
 
 app.use(bodyParser.json());
 app.use(cors());
 app.use(passport.initialize());
-
-mongoose.connect(
-  process.env.DB_CONNECTION,
-  { useNewUrlParser: true }
-);
-
-mongoose.connection.on(
-  'error',
-  console.error.bind(console, 'connection error:')
-);
 
 passport.use(
   new GoogleTokenStrategy(
