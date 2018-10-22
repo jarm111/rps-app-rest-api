@@ -8,7 +8,7 @@ exports.getTokenAndBestScore = (req, res) => {
       googleId: req.user.googleId
     },
     process.env.SECRET,
-    { expiresIn: '1d', issuer: process.env.ISSUER }
+    { expiresIn: process.env.EXPIRES_IN, issuer: process.env.ISSUER }
   );
   res.json({ token, bestScore: req.user.bestScore });
 };
