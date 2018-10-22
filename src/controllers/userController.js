@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const tokenUtil = require('../utils/tokenUtil');
+const headerUtil = require('../utils/headerUtil');
 
 exports.getTokenAndBestScore = (req, res) => {
   const token = tokenUtil.generateToken({ googleId: req.user.googleId });
@@ -8,7 +9,7 @@ exports.getTokenAndBestScore = (req, res) => {
 };
 
 exports.authenticateUser = (req, res, next) => {
-  const token = processAuthHeader(req.headers['authorization']);
+  const token = headerUtil.processAuthHeader(req.headers['authorization']);
   if (!token)
     return res.send('authorization header must be form: Bearer token');
   tokenUtil.verifyToken(token, (err, decoded) => {
@@ -31,14 +32,4 @@ exports.updateUserBestScore = (req, res) => {
       res.send("Successfully updated user's best score to " + newBestScore);
     }
   );
-};
-
-const processAuthHeader = authHeader => {
-  if (!authHeader) return null;
-  const parts = authHeader.split(' ');
-  if (parts.length !== 2) return null;
-  const scheme = parts[0];
-  const credentials = parts[1];
-  if (!/^Bearer$/i.test(scheme)) return null;
-  return credentials;
 };
