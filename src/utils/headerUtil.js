@@ -1,4 +1,4 @@
-exports.processAuthHeader = authHeader => {
+exports.extractToken = authHeader => {
   if (!authHeader) return null;
   const parts = authHeader.split(' ');
   if (parts.length !== 2) return null;

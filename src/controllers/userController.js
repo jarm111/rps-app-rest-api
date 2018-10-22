@@ -9,7 +9,7 @@ exports.getTokenAndBestScore = (req, res) => {
 };
 
 exports.authenticateUser = (req, res, next) => {
-  const token = headerUtil.processAuthHeader(req.headers['authorization']);
+  const token = headerUtil.extractToken(req.headers['authorization']);
   if (!token)
     return res.send('authorization header must be form: Bearer token');
   tokenUtil.verifyToken(token, (err, decoded) => {
