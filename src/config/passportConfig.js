@@ -1,13 +1,14 @@
 const passport = require('passport');
 const GoogleTokenStrategy = require('passport-google-token').Strategy;
 const mongoose = require('mongoose');
+const config = require('./config');
 
 module.exports = function passportConfig() {
   passport.use(
     new GoogleTokenStrategy(
       {
-        clientID: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET
+        clientID: config.get('google.clientId'),
+        clientSecret: config.get('google.clientSecret')
       },
       (accessToken, refreshToken, profile, done) => {
         const User = mongoose.model('User');

@@ -1,10 +1,11 @@
 require('dotenv').config();
+const config = require('./config/config');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
-const port = process.env.PORT || '5000';
+const port = config.get('port');
 const dbConnection = require('./config/dbConnection');
 const passportConfig = require('./config/passportConfig');
 require('./models/userModel');

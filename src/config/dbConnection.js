@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
+const config = require('./config');
 
 module.exports = function dbConnection() {
   mongoose.connect(
-    process.env.DB_CONNECTION,
+    config.get('db.host') + config.get('db.name'),
     { useNewUrlParser: true }
   );
 
