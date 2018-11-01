@@ -5,15 +5,17 @@ const headerUtil = require('../utils/headerUtil');
 
 exports.getTokenAndBestScore = (req, res) => {
   const token = tokenUtil.generateToken({ googleId: req.user.googleId });
-  res.json({ token, bestScore: req.user.bestScore });
+  res.status(200).json({ token, bestScore: req.user.bestScore });
 };
 
 exports.authenticateUser = (req, res, next) => {
   const token = headerUtil.extractToken(req.headers['authorization']);
   if (!token)
-    return res.send('authorization header must be form: Bearer token');
+    return res
+      .status(400)
+      .send('authorization header must be form: Bearer token');
   tokenUtil.verifyToken(token, (err, decoded) => {
-    if (err) return res.send(err);
+    if (err) return res.status(401).send(err);
     res.locals.googleId = decoded.googleId;
     next();
   });
@@ -22,14 +24,18 @@ exports.authenticateUser = (req, res, next) => {
 exports.updateUserBestScore = (req, res) => {
   const newBestScore = req.body.bestScore;
   if (!newBestScore)
-    return res.send('bestScore: number is required in request body');
+    return res
+      .status(400)
+      .send('bestScore: number is required in request body');
   User.findOneAndUpdate(
     { googleId: res.locals.googleId },
     { bestScore: newBestScore },
     { new: true },
     err => {
       if (err) return res.send(err);
-      res.send("Successfully updated user's best score to " + newBestScore);
+      res
+        .status(201)
+        .send("Successfully updated user's best score to " + newBestScore);
     }
   );
 };
