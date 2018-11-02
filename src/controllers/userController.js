@@ -11,12 +11,14 @@ exports.getTokenAndBestScore = (req, res) => {
 
 exports.authenticateUser = (req, res, next) => {
   const token = headerUtil.extractToken(req.headers['authorization']);
-  if (!token)
+  if (!token) {
     return res
       .status(400)
       .send('authorization header must be form: Bearer token');
-  if (!validator.isJWT(token))
+  }
+  if (!validator.isJWT(token)) {
     return res.status(400).send('Provided token is not jwt');
+  }
   tokenUtil.verifyToken(token, (err, decoded) => {
     if (err) return res.status(401).send(err);
     res.locals.googleId = decoded.googleId;
@@ -26,12 +28,14 @@ exports.authenticateUser = (req, res, next) => {
 
 exports.updateUserBestScore = (req, res) => {
   const newBestScore = req.body.bestScore;
-  if (!newBestScore)
+  if (!newBestScore) {
     return res
       .status(400)
       .send('bestScore: integer number is required in request body');
-  if (!validator.isInt(newBestScore.toString()))
+  }
+  if (!validator.isInt(newBestScore.toString())) {
     return res.status(400).send('bestScore needs to be integer number');
+  }
   User.findOneAndUpdate(
     { googleId: res.locals.googleId },
     { bestScore: newBestScore },
