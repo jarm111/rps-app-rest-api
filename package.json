@@ -1,7 +1,7 @@
 {
-  "name": "backend",
+  "name": "rps-app-rest-api",
   "version": "0.1.0",
-  "description": "REST API for RPS MERN App",
+  "description": "Node.js REST API for the RPS App Client",
   "scripts": {
     "start": "nodemon src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
