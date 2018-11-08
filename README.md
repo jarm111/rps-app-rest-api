@@ -15,7 +15,7 @@ Provides a REST API server for the RPS App Client. This is my project work for W
 
 
 ## .env file content example
-
+```
 PORT=5000
 DB_HOST=mongodb://localhost/
 DB_NAME=RpsUsersdb
@@ -24,3 +24,4 @@ GOOGLE_CLIENT_SECRET=your_google_client_secret
 JWT_SECRET=secret_key_for_signing_token
 JWT_ISSUER=token_issuer
 JWT_EXPIRES_IN=1d
+```
