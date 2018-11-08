@@ -42,20 +42,20 @@ const config = convict({
       doc: 'Secred key used to sign the token',
       format: String,
       default: null,
-      env: 'SECRET',
+      env: 'JWT_SECRET',
       sensitive: true
     },
     issuer: {
       doc: 'Token issuer used in payload',
       format: String,
       default: 'RPS-App',
-      env: 'ISSUER'
+      env: 'JWT_ISSUER'
     },
     expiresIn: {
       doc: 'Token expiration time used in payload',
       format: String,
       default: '1d',
-      env: 'EXPIRES_IN'
+      env: 'JWT_EXPIRES_IN'
     }
   }
 });
