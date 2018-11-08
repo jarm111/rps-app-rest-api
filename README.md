@@ -4,7 +4,7 @@ Node.js REST API for the RPS App Client.
 
 ## Description
 
-Provides a REST API server for the RPS App Client. This is my project work for Web Development 1 2017 course. Made with Node.js, Express and Mongoose.
+Provides a REST API server for the RPS App Client. This is my project work for Web Development 1 2017 course. Made with Node.js, Express, Mongoose and Passport.
 
 ## Getting started
 
