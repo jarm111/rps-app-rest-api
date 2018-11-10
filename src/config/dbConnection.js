@@ -3,7 +3,7 @@ const config = require('./config');
 
 module.exports = function dbConnection() {
   mongoose.connect(
-    config.get('db.host') + config.get('db.name'),
+    config.get('dbURI'),
     { useNewUrlParser: true, useFindAndModify: false }
   );
 

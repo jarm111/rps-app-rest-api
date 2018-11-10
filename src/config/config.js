@@ -8,19 +8,11 @@ const config = convict({
     env: 'PORT',
     arg: 'port'
   },
-  db: {
-    host: {
-      doc: 'Database host name/IP',
-      format: '*',
-      default: 'mongodb://localhost/',
-      env: 'DB_HOST'
-    },
-    name: {
-      doc: 'Database name',
-      format: String,
-      default: 'RpsUsersdb',
-      env: 'DB_NAME'
-    }
+  dbURI: {
+    doc: 'Database connection URI',
+    format: String,
+    default: 'mongodb://localhost/RpsUsersdb',
+    env: 'MONGODB_URI'
   },
   google: {
     clientId: {
