@@ -5,7 +5,7 @@
   "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "parserOptions": { "ecmaVersion": 6 },
   "rules": {
-    "no-console": ["warn"],
+    "no-console": ["warn", {"allow": ["warn", "error"]}],
     "curly": ["error", "multi-line"]
   }
 }
