@@ -20,4 +20,5 @@ app.use(passport.initialize());
 passportConfig();
 dbConnection();
 routes(app);
+// eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Rps REST API listening on port ${port}!`));
